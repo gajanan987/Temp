@@ -1,1 +1,1053 @@
-Write a program to demonstrate the usage of friend function.
+3. Write a program to demonstrate the use of this pointer.
+
+#include <iostream>  
+using namespace std;  
+class Employee {  
+   public:  
+       int id; //data member (also instance variable)      
+       string name; //data member(also instance variable)  
+       float salary;  
+       Employee(int id, string name, float salary)    
+        {    
+            this->id = id;    
+            this->name = name;    
+            this->salary = salary;   
+        }    
+       void display()    
+        {    
+            cout<<id<<"  "<<name<<"  "<<salary<<endl;    
+        }    
+};  
+int main(void) {  
+    Employee e1 =Employee(101, "Sonoo", 890000); //creating an object of Employee   
+    Employee e2=Employee(102, "Nakul", 59000); //creating an object of Employee  
+    e1.display();    
+    e2.display();    
+    return 0;  
+}  
+
+
+-----or-----
+
+
+#include <iostream>  
+using namespace std;  
+class Employee {  
+   private:  
+       int id; //data member (also instance variable)      
+       string name; //data member(also instance variable)  
+       float salary;  
+       public:
+    Employee(){
+        id=5;
+        name="abcd";
+        salary=66555;
+    };
+       Employee(int id, string name, float salary)    
+        {    
+            this->id= id;    
+            this->name = name;    
+            this->salary = salary;   
+        }    
+       void display()    
+        {    
+            cout<<id<<"  "<<name<<"  "<<salary<<endl;    
+        }    
+};  
+int main() {  
+    Employee e1,e2; //creating an object of Employee   
+    //Employee e2; //creating an object of Employee  
+    e1=Employee(10,"abhi",2000.0);
+    e1.display();    
+    //e2.display();    
+    return 0;  
+}  
+
+
+------or----------
+
+#include <iostream>  
+using namespace std;  
+class Employee {  
+   private:  
+       int id;       
+       string name; 
+       float salary; 
+    public:
+        Employee(){
+            id=10;
+            name="Harsh";
+            salary=65600;
+        }
+       Employee(int id, string name, float salary)    
+        {    
+             this->id=id;    
+            this->name = name;    
+            this->salary = salary;   
+        }    
+       void display()    
+        {    
+            cout<<id<<"  "<<name<<"  "<<salary<<endl;    
+        }    
+};  
+int main() { 
+    Employee e1;
+    Employee s1 =Employee(101, "Sonoo", 890000);  
+    e1.display();  
+    s1.display();
+    return 0;  
+}
+
+  
+ 
+5. Overload ++ operator for postfix and prefix operations on a matrix.
+
+
+#include<iostream>
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class matrix{
+ int a;
+ int b;
+ int A[2][2];
+ public:
+  void readmatrix();
+  void displaymatrix();
+  void rea();
+  void disp();
+};
+
+void matrix::readmatrix()
+{
+ cout<<"Post Increment"<<endl;
+ for(int i=1;i<=2;i++)
+ {
+  for(int j=1;j<=2;j++)
+  {
+   cout<<"A["<<i<<"]["<<j<<"] : ";
+   cin>>A[i][j];
+  }
+ }
+}
+
+void matrix::displaymatrix()
+{
+ for(int i=1;i<=2;i++)
+ {
+  for(int j=1;j<=2;j++)
+  {
+   cout<<" "<<++A[i][j];
+  }
+  cout<<endl;
+ }
+}
+
+void matrix::rea()
+{
+cout<<"Pre Increment"<<endl;
+ for(int i=1;i<=2;i++)
+ {
+  for(int j=1;j<=2;j++)
+  {
+   cout<<"A["<<i<<"]["<<j<<"] : ";
+   cin>>A[i][j];
+  }
+ }
+}
+
+void matrix::disp()
+{
+ 
+ for(int i=1;i<=2;i++)
+ {
+  for(int j=1;j<=2;j++)
+  {
+   cout<<" "<<A[i][j]++;
+  }
+  cout<<endl;
+ }
+}
+
+
+
+
+int main()
+{
+ matrix m;
+ m.readmatrix();
+ m.displaymatrix();
+ 
+ m.rea();
+ m.disp();
+
+
+ return(0);
+}
+
+
+14. Write a program to demonstrate the usage of friend function.
+
+
+#include <iostream>
+using namespace std;
+
+class Distance {
+    private:
+        int meter;
+        
+        friend int addFive(Distance);
+
+    public:
+        Distance() : meter(0) {}
+        
+};
+
+int addFive(Distance d) {
+    int aa,bb;
+    cout<<"Enter first value: ";
+    cin>>aa;
+    cout<<"Enter Second value: ";
+    cin>>bb;
+    d.meter = aa + bb;
+    return d.meter;
+  
+}
+
+int main() {
+    Distance D;
+    cout << addFive(D);
+   
+    return 0;
+}
+
+
+16. Write a program using copy constructor to copy data of an object to another
+object.
+
+
+#include <iostream>
+using namespace std;
+
+// declare a class
+class Wall {
+  private:
+    double length;
+    double height;
+
+  public:
+
+    // initialize variables with parameterized constructor
+    Wall(double len, double hgt) {
+      length = len;
+      height = hgt;
+    }
+
+    // copy constructor with a Wall object as parameter
+    // copies data of the obj parameter
+    Wall(Wall &obj) {
+      length = obj.length;
+      height = obj.height;
+    }
+
+    double calculateArea() {
+      return length * height;
+    }
+};
+
+int main() {
+  // create an object of Wall class
+  Wall wall1(10.5, 8.6);
+
+  // copy contents of wall1 to wall2
+  Wall wall2 = wall1;
+
+  // print areas of wall1 and wall2
+  cout << "Area of Wall 1: " << wall1.calculateArea() << endl;
+  cout << "Area of Wall 2: " << wall2.calculateArea();
+
+  return 0;
+}
+
+
+20. Overload new and delete operator.
+
+
+// CPP program to demonstrate
+// Global overloading of
+// new and delete operator
+#include<iostream>
+#include<stdlib.h>
+
+using namespace std;
+void * operator new(size_t size)
+{
+	cout << "New operator overloading " << endl;
+	void * p = malloc(size);
+	return p;
+}
+
+void operator delete(void * p)
+{
+	cout << "Delete operator overloading " << endl;
+	free(p);
+}
+
+int main()
+{
+	int n = 5, i;
+	int * p = new int[n];
+
+	for (i = 0; i<n; i++)
+	p[i]= i;
+
+	cout << "Array: ";
+	for(i = 0; i<n; i++)
+		cout << p[i] << " ";
+		
+	cout << endl;
+
+	delete [] p;
+	
+}
+
+or===
+
+
+// CPP program to demonstrate
+// Global overloading of
+// new and delete operator
+#include<iostream>
+#include<stdlib.h>
+
+using namespace std;
+void * operator new(size_t size)
+{
+	cout << "New operator  " << endl;
+	void * p = malloc(size);
+	return p;
+}
+
+void operator delete(void * p)
+{
+	cout << "Delete operator " << endl;
+	free(p);
+}
+
+int main()
+{
+	int * p = new int(5);
+
+	
+	cout <<"No is: "<<*p<< endl;
+
+	delete[] p;
+	cout <<"No is: "<<*p<< endl;
+}
+
+
+15. Overload + and - operators for complex class.
+
+
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+
+class Complex{
+   private:
+    int intmark;
+    int extmark;
+    
+    public:
+        Complex(){
+            intmark = 0;
+            extmark=0;
+        }
+    Complex(int m,int e){
+        intmark = m;
+        extmark = e;
+    }
+    void display(){
+        cout<<"Internal Mark is : "<<intmark<<endl;
+        cout<<"External Mark is : "<<extmark<<endl;
+    }
+    
+    Complex operator+(Complex m){
+        Complex temp;
+        temp.intmark = intmark + m.intmark;
+        temp.extmark = extmark + m.extmark;
+        return temp;
+    }
+    Complex operator-(Complex m);
+            
+};
+
+Complex Complex :: operator-(Complex m){
+        
+        Complex temp;
+        temp.intmark = intmark - m.intmark;
+        temp.extmark = extmark - m.extmark;
+        return temp;
+}
+
+int main() {
+    
+    Complex m1(10,20),m2(30,40);
+    Complex m3 = m1 + m2;
+    Complex m4 = m2 - m1;
+    cout<<"+ operator"<<endl;
+    m3.display();
+    cout<<"- operator"<<endl;
+    m4.display();
+    return 0;
+}
+
+
+
+19. Write a program to overload *, <<,>> ,== operators for a matrix class.
+
+* operator
+
+#include <iostream>
+using namespace std;
+
+class Matrix{
+private:
+int real;
+
+public:
+Matrix(int real){
+	this->real = real;
+}
+void print(){
+	cout<<"Multiplicaiton is : "<<real;
+}
+Matrix operator* (Matrix c2){
+	Matrix c3(0);
+	c3.real = this->real*c2.real;
+	return c3;
+}
+};
+int main() {
+	Matrix c1(20);
+	Matrix c2(5);
+	Matrix c3 = c1 * c2;
+	c3.print();
+	return 0;
+}
+
+-------------------------------------------
+
+== operator
+
+
+#include <iostream>
+using namespace std;
+
+class Matrix{
+private:
+int real;
+
+public:
+Matrix(int real){
+	this->real = real;
+}
+
+Matrix operator== (Matrix c2){
+	if(this->real == c2.real)
+	cout<<" match"<<endl;
+	else
+	cout<<"not match"<<endl;
+	
+}
+};
+int main() {
+	Matrix c1(20);
+	Matrix c2(50);
+	Matrix c3 = c1 == c2;
+	return 0;
+}
+
+
+
+-------------------or------------------
+
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;  
+class Complex{
+  private:
+    int a;
+    int b;
+  public:
+  Complex(){
+      a=10;
+      b=3;
+  }
+  Complex(int a,int b){
+      this->a=a;
+      this->b=b;
+  }
+  void display(){
+      cout<<"a:"<<a<<endl<<"b:"<<b<<endl;
+      int mul = a * b;
+      cout<<"Multiplication :"<<mul<<endl;
+      int br = a >> b;
+      cout<<"Bitwise Right Shift :"<<br<<endl;
+      int bl = a << b;
+      cout<<"Bitwise Left Shift :"<<bl<<endl;
+      
+      if(a == b)
+      cout<<"Number is Match ";
+      else
+      cout<<"Number is not Match ";
+  }
+};
+
+int main() {
+   
+    Complex e1;
+    e1.display();
+    return 0;
+}
+
+
+
+7. Write a program to demonstrate the property of Dynamic Polymorphism.
+
+
+#include <iostream>  
+using namespace std;
+class ClassA {
+		public:
+		virtual void show() {
+			cout << "Base Class" << endl;
+		}
+	};
+	class ClassB :public ClassA {
+	public:
+		void show() 	{
+			cout << "Derived Class is Call";
+		}
+	};
+	int main() {
+		ClassA* a;   
+		ClassB b;
+		a = &b;
+		a->show();      
+	}
+
+
+
+
+
+10. Write a program to demonstrate the usage of static data members and
+functions.
+
+
+#include<iostream>
+using namespace std;
+
+class stat {
+    int code;
+    static int count;
+
+public:
+
+    stat() {
+        code = ++count;
+    }
+
+    void showcode() {
+        cout << "\n\tObject number is :" << code;
+    }
+
+    static void showcount() {
+        cout << "\n\tCount Objects :" << count;
+    }
+};
+
+int stat::count;
+
+int main() {
+    
+    stat obj1, obj2;
+
+    obj1.showcount();
+    obj1.showcode();
+    obj2.showcount();
+    obj2.showcode();
+    return 0;
+}
+
+
+24. Write a program demonstrating dynamic polymorphism.
+
+
+#include <iostream>
+
+using namespace std;
+
+// define a base class bird
+
+class bird {
+
+public:
+
+    // virtual function
+
+    virtual void display()
+
+    {
+
+        cout << "This is display in bird class." << "\n\n";
+
+    }
+
+    void print()
+
+    {
+
+        cout << "This is show in bird class." << "\n\n";
+
+    }
+
+};
+
+// define a child class parrot
+
+class parrot : public bird {
+
+public:
+
+    void display()
+
+    {
+
+        cout << "This is display in parrot class." << "\n\n";
+
+    }
+
+    void print()
+
+    {
+
+        cout << "This is show in parrot class." << "\n\n";
+
+    }
+
+};
+
+int main()
+
+{
+
+    // create a reference of class bird
+
+    bird* brd;
+
+    parrot p;
+
+    brd = &p;
+
+    // this will call the virtual function
+
+    brd->display();
+
+    // this will call the non-virtual function
+
+    brd->print();
+
+}
+
+
+------------------ or -----------------------
+
+
+
+#include <iostream>
+using namespace std;
+
+class Car
+{
+    public:
+    virtual void Start()
+    {
+        cout << "Car Started" << endl;
+    }
+    virtual void Stop()
+    {
+        cout << "Car Stopped" << endl;
+    }
+};
+
+class Innova:public Car
+{
+    public:
+    void Start()
+    {
+        cout << "Innova Started" << endl;
+    }
+    void Stop()
+    {
+        cout << "Innova Stopped" << endl;
+    }
+};
+
+class Swift:public Car
+{
+    public:
+    void Start()
+    {
+        cout << "Swift Started" << endl;
+    }
+    void Stop()
+    {
+        cout << "Swift Stopped" << endl;
+    }
+};
+
+int main()
+{
+    Car *c = new Innova();
+    c->Start();
+    c->Stop();
+    c = new Swift();
+    c->Start();
+    c->Stop();
+    return 0;
+}
+
+
+
+26. Write a program to create your own mnnipulntor.
+
+
+#include <iostream>
+#include <iomanip>
+using namespace std;
+int main()
+{
+    cout << "Hex 163: " << hex << 168 <<"\n";
+    cout << "Oct 163: " << oct << 163 <<"\n";
+    cout << "Dec 163: " << dec << 163 <<"\n";
+    return 0;
+}
+
+
+
+27. Write a program to copy the contents or one file to another.
+
+
+
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main()
+{
+	ifstream fs;
+	ofstream ft;
+	string str;
+	char sourcefile[50], destinationfile[50];
+
+	cout << "Enter Source File with Extension: ";
+
+	gets(sourcefile);
+
+	fs.open(sourcefile);
+
+	if (!fs)
+	{
+		cout << "Error in Opening Source File...!!!";
+		exit(1);
+	}
+
+	cout << "Enter Destination File with Extension: ";
+
+	gets(destinationfile);
+
+	ft.open(destinationfile);
+
+	if (!ft)
+	{
+		cout << "Error in Opening Destination File...!!!";
+		fs.close();
+		exit(2);
+	}
+
+	if (fs && ft)
+	{
+		while (getline(fs, str))
+		{
+			ft << str << "\n";
+		}
+
+		cout << "\n\n Source File Date Successfully Copied to Destination File...!!!";
+
+	}
+	else
+	{
+		cout << "File Cannot Open...!!!";
+	}
+
+	cout << "\n\n Open Destination File and Check!!!\n";
+
+	fs.close();
+	ft.close();
+}
+
+
+
+28. Write a progrnm to perform rend/write hlrrnry I/ op ·rntion lH\ 1 tile.
+
+
+
+
+#include<iostream>
+#include<fstream>
+using namespace std;
+struct Student {
+	int roll_no;
+	string name;
+};
+int main() {
+	ofstream wf("student.dat", ios::out | ios::binary);
+	if(!wf) {
+		cout << "Cannot open file!" << endl;
+	return 1;
+	}
+	Student wstu[3];
+	wstu[0].roll_no = 1;
+	wstu[0].name = "Ram";
+	wstu[1].roll_no = 2;
+	wstu[1].name = "Shyam";
+	wstu[2].roll_no = 3;
+	wstu[2].name = "Madhu";
+	for(int i = 0; i < 3; i++)
+		wf.write((char *) &wstu[i], sizeof(Student));
+	wf.close();
+	if(!wf.good()) {
+		cout << "Error occurred at writing time!" << endl;
+	return 1;
+	}
+	ifstream rf("student.dat", ios::out | ios::binary);
+		if(!rf) {
+			cout << "Cannot open file!" << endl;
+		return 1;
+	}
+	Student rstu[3];
+	for(int i = 0; i < 3; i++)
+		rf.read((char *) &rstu[i], sizeof(Student));
+	rf.close();
+	if(!rf.good()) {
+		cout << "Error occurred at reading time!" << endl;
+	return 1;
+	}
+	cout<<"Student's Details:"<<endl;
+	for(int i=0; i < 3; i++) {
+		cout << "Roll No: " << wstu[i].roll_no << endl;
+	cout << "Name: " << wstu[i].name << endl;
+	cout << endl;
+	}
+	return 0;
+}
+
+
+
+------or ----------------
+
+
+#include <iostream>
+#include <fstream>
+#define FILE_NAME "emp.dat"
+
+using namespace std;
+
+//class employee declaration
+class Employee {
+private : 
+	int 	empID;
+	char 	empName[100] ;
+	char 	designation[100];
+	int 	ddj,mmj,yyj;
+	int 	ddb,mmb,yyb;
+public  :
+	//function to read employee details
+	void readEmployee(){
+		cout<<"EMPLOYEE DETAILS"<<endl;
+		cout<<"ENTER EMPLOYEE ID : " ;
+		cin>>empID;
+		cin.ignore(1);
+		cout<<"ENTER  NAME OF THE EMPLOYEE : ";
+		cin.getline(empName,100);
+
+		cout<<"ENTER DESIGNATION : ";
+		cin.getline(designation,100);
+		
+		cout<<"ENTER DATE OF JOIN:"<<endl;
+		cout<<"DATE : "; cin>>ddj;
+		cout<<"MONTH: "; cin>>mmj;
+		cout<<"YEAR : "; cin>>yyj;
+		
+		cout<<"ENTER DATE OF BIRTH:"<<endl;
+		cout<<"DATE : "; cin>>ddb;
+		cout<<"MONTH: "; cin>>mmb;
+		cout<<"YEAR : "; cin>>yyb;
+	}
+	//function to write employee details
+	void displayEmployee(){
+		cout<<"EMPLOYEE ID: "<<empID<<endl
+		 <<"EMPLOYEE NAME: "<<empName<<endl
+		 <<"DESIGNATION: "<<designation<<endl
+		 <<"DATE OF JOIN: "<<ddj<<"/"<<mmj<<"/"<<yyj<<endl
+		 <<"DATE OF BIRTH: "<<ddb<<"/"<<mmb<<"/"<<yyb<<endl;
+	}
+};
+
+int main(){
+	
+	//object of Employee class
+	Employee emp;
+	//read employee details
+	emp.readEmployee();
+	
+	//write object into the file
+	fstream file;
+	file.open(FILE_NAME,ios::out|ios::binary);
+	if(!file){
+		cout<<"Error in creating file...\n";
+		return -1;
+	}
+	
+	file.write((char*)&emp,sizeof(emp));
+	file.close();
+	cout<<"Date saved into file the file.\n";
+	
+	//open file again 
+	file.open(FILE_NAME,ios::in|ios::binary);
+	if(!file){
+		cout<<"Error in opening file...\n";
+		return -1;
+	}
+	
+	if(file.read((char*)&emp,sizeof(emp))){
+			cout<<endl<<endl;
+			cout<<"Data extracted from file..\n";
+			//print the object
+			emp.displayEmployee();
+	}
+	else{
+		cout<<"Error in reading data from file...\n";
+		return -1;
+	}
+	
+	file.close();	
+	return 0;
+}
+
+
+
+9. Use the program of problem no. 2 to store the data in a data file. Give appropriate options for data manipulations.
+
+
+#include<iostream.h>
+#include<fstream.h>
+#include<stdio.h>
+#include<conio.h>
+#include<alloc.h>
+#include<iomanip.h>
+class Linked_list
+{
+	struct node
+	{
+		int data;
+		struct node *next;
+	};
+	struct node *head;
+	struct node *first;
+	struct node *new_node;
+
+	public:
+
+	Linked_list()
+	{
+		first=NULL;
+		head=NULL;
+	}
+
+	void display()
+	{
+		head=first;
+		cout<<"\nData in linked list:\n";
+		while(head!=NULL)
+		{
+			cout<<setiosflags(ios::left)
+			    <<setw(10)
+			    <<head->data
+			    <<"\n";
+			head=head->next;
+		}
+	}
+
+	void operator +(int n)
+	{
+		char ch;
+		do
+		{
+			new_node=(struct node *)malloc(sizeof(struct node));
+			cout<<"\nEnter node value:\t";
+			cin>>new_node->data;
+			new_node->next=NULL;
+			if(first==NULL)
+			{
+				first=new_node;
+			}
+			else
+			{
+				if(first->data>new_node->data)
+				{
+					new_node->next=first;
+					first=new_node;
+				}
+				else
+				{
+					head=first;
+					while(head->next!=NULL)
+					{
+						head=head->next;
+					}
+					new_node->next=new_node;
+					new_node=NULL;
+				}
+			}
+			cout<<"\nDo you want to continue['y' or 'Y' for YES]:\t";
+			cin>>ch;
+		}while(ch=='y' || ch=='Y');
+	}
+};
+
+void main()
+{
+	Linked_list l1;
+
+	clrscr();
+
+	int n;
+	l1+1;
+
+	fstream f1;
+	f1.open("P9_FILE.txt",ios::out);
+	f1.write((char *)& l1,sizeof(l1));
+	f1.close();
+
+	ifstream f2;
+	f2.open("P9_FILE.txt",ios::in);
+	f2.read((char *)& l1,sizeof(l1));
+	l1.display();
+	f2.close();
+
+	getch();
+}
