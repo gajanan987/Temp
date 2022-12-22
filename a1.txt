@@ -1051,3 +1051,80 @@ void main()
 
 	getch();
 }
+
+99. 2D matrix
+
+#include<iostream>
+using namespace std; 
+int main ()
+{
+    int r1, c1, r2, c2, i, j, k;
+    int A[5][5], B[5][5], C[5][5];  
+    cout << "Enter number of rows and columns of matrix A : ";
+    cin >> r1 >> c1;
+    cout << "Enter number of rows and columns of matrix B : ";
+    cin >> r2 >> c2; 
+  
+    cout << "Enter elements of matrix A : ";
+    for (i = 0; i < r1; i++)
+        for (j = 0; j < c1; j++)
+            cin >> A[i][j];
+    cout << "Enter elements of matrix B : ";
+    for (i = 0; i < r2; i++)
+        for (j = 0; j < c2; j++)
+            cin >> B[i][j];	
+     cout << "Multiplication of two matrices\n";
+     
+    for (i = 0; i < r1; i++)
+    {
+        for (j = 0; j < c2; j++)
+        {
+            for (k = 0; k < r2; k++)
+            {
+                C[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+    
+    for (i = 0; i < r1; i++)
+    {    
+        for (j = 0; j < c2; j++)
+            cout << C[i][j] << "  ";
+        cout << "\n";
+    }
+    
+     cout << "Sum of two matrices\n";
+     
+    for (i = 0; i < r1; i++)
+        for (j = 0; j < r2; j++)
+            C[i][j] = A[i][j] + B[i][j];
+            
+    for (i = 0; i < r1; i++)
+    {    for (j = 0; j < r2; j++)
+            cout << C[i][j] << "  ";	
+        cout << "\n";
+    }
+    
+    cout << "substraction of two matrices\n";
+    for (i = 0; i < r1; i++)
+        for (j = 0; j < r2; j++)
+            C[i][j] = A[i][j] - B[i][j];
+            
+    for (i = 0; i < r1; i++)
+    {    for (j = 0; j < r2; j++)
+            cout << C[i][j] << "  ";	
+        cout << "\n";
+    }
+    
+    cout << "Division of two matrices\n";
+    for (i = 0; i < r1; i++)
+        for (j = 0; j < r2; j++)
+            C[i][j] = A[i][j] / B[i][j];
+            
+    for (i = 0; i < r1; i++)
+    {    for (j = 0; j < r2; j++)
+            cout << C[i][j] << "  ";	
+        cout << "\n";
+    }
+    return 0;
+}
